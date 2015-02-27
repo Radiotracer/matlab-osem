@@ -1,0 +1,82 @@
+debug_level=4 
+
+#--------------------------------------------------------------------------------
+# parameter about projectoin data
+
+#emission=t !emission recon (don't divide by number of angles) (default=true)
+#circular=t !reconstruct only inscribed circle if true (default=true);
+
+binwidth=0.09766        !bin width in projections in cm default=pixwidth
+slicethickness=0.09766    !slice thickness (default=pixelwidth)
+kdim=144                !number of bins in one view
+
+nang=128              ! total number of view the #of bin is read from prj data
+angle_start=0          !start angle in degrees (90 degrees is x-axis (default=0)
+angle_range=360        
+
+cor2col=16.0           ! distance from center of rotation to col face  (default=0)
+
+norm_in_memory=true
+#--------------------------------------------------------------------------------
+# parameter about image to reconstruct
+
+pixwidth=0.09766          !pixel size for reconstruced matrix in cm (required, no default)
+
+slice_start=0          !starting slice for recon (default=0)
+slice_inc=1
+slice_end=0          !last slice for recon (default=#slices in image)
+
+ndim=144               !size of reconstruction matrix (default=$bins in prj data)
+
+
+#-------------------------------------------------------------------------------
+# parameter about reconstruction
+
+iterations=5              !number of last terations (default=1)
+num_ang_per_set=8         !number of angles per subset for osem. 
+
+save_int=1                             !interval for saving iterations (default=1)
+start_iteration=1                      !start iteration number. This mostly for number of output
+save_iterations=1/5    !list of iterations to save and or
+                             
+
+#-------------------------------------------------------------------------------
+# parameter about attenuation map 
+
+atn_slice_start=0      !first slice in atn map to use (default=0)
+atn_slice_inc=1
+#atnmapfac=1.0         !factor to scale atn map (default=1.0)
+
+#-------------------------------------------------------------------------------
+# parameter about what physical factors to model/compensate.
+
+model=d                 !a:attenuation, d:drf/grf, s:scatter
+#prjmodel=a           !Overrides model if found (default=model)
+#bckmodel=a            !Overrides model if found (default=model)
+
+#----------------------------------------------------------------------------------
+# parameter about scatter compensation
+
+#srf_collapse_fac=2     ! amount to collapse image during scatter modeling. 
+#srf_parmfile=krnl.par  ! file to read srf parameters from (default="")
+#srf_parm_line=2        ! line in srf_parfile that contains kernel filename and
+#esse_parms=2 2 2 3     !parameters for esse scatter modeling. First parmater is
+#srf_iterations=1 2    !list of iterations to model scatter in backprojector.
+#scat_est_file=scat.im ! file to read scatter estimate from. 
+#scat_est_fac=1.0      !factor to multiply scat est before add to prj (default=1.0)
+#initest_slice_start=0 !(first slicein initial estimate image to use (default=0)
+
+#----------------------------------------------------------------------------------
+# parameter about collimator and detector system
+# used for GRF/DRF compensation
+
+gap=0.89          ! distance from back of collimator to image plane 
+collthickness=2.405      !collimator thickness in cm. 
+holediam=0.1165          !diameter of collimator holes in cm.
+intrinsicfwhm=0.40     !FWHM of intrinsic resolution in cm
+max_frac_err=0.02      ! truncate computed drf at a distance
+
+#drf_from_file=t
+#drf_tab_from_file=t              !true if drf table is to be read from a file.
+#drf_tab_file=LEHR_442_tab 
+#fft_convolve=true                ! if true, then convolution of drf using FFT
